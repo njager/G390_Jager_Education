@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BakingScript : MonoBehaviour
 {
@@ -79,8 +80,13 @@ public class BakingScript : MonoBehaviour
                         Debug.Log("No object!");
                     }
                 }
-
             }
+        }
+
+        //reset button
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -97,11 +103,23 @@ public class BakingScript : MonoBehaviour
     {
         canBake = false;
 
-        if(eggs <= 40)
+        if(eggs <= 60)
         {
 
         }
-        else if(eggs == 60)
+        else if (eggs == 80)
+        {
+
+        }
+        else if (eggs == 100)
+        {
+
+        }
+        else if (eggs == 120)
+        {
+
+        }
+        else if (eggs >= 140)
         {
 
         }

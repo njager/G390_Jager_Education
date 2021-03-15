@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BakingScript : MonoBehaviour
 {
     //private variables
     private Rigidbody rB;
     private bool canBake;
-    int eggs;
-    int flour;
-    int sugar;
-    int butter;
+    int eggs = 0;
+    int flour = 0;
+    int sugar = 0;
+    int butter = 0;
 
     //public variables
-    public Camera playerCam;
+    public TextMeshPro amountTextEggs;
+    public TextMeshPro amountTextFlour;
+    public TextMeshPro amountTextSugar;
+    public TextMeshPro amountTextButter;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +25,7 @@ public class BakingScript : MonoBehaviour
         //start stuff as child
         rB = GetComponent<Rigidbody>();
         canBake = true;
-
+        SetText();
     }
 
     //called last every frame
@@ -39,32 +43,67 @@ public class BakingScript : MonoBehaviour
             {
                 //check the object interacted with, if the previous object has been found then this item can now be found
                 GameObject interactedObject = interactionInfo.collider.gameObject;
-                if (interactedObject.tag == "Eggs")
+                if(canBake == true)
                 {
-                    Debug.Log("You added eggs!");
+                    if (interactedObject.tag == "Eggs")
+                    {
+                        Debug.Log("You added eggs!");
+                        eggs += 20;
+                        SetText();
+                    }
+                    else if (interactedObject.tag == "Flour")
+                    {
+                        Debug.Log("You added Flour!");
+                        flour += 20;
+                        SetText();
+                    }
+                    else if (interactedObject.tag == "Sugar")
+                    {
+                        Debug.Log("You added Sugar!");
+                        sugar += 20;
+                        SetText();
+                    }
+                    else if (interactedObject.tag == "Butter")
+                    {
+                        Debug.Log("You added Butter!");
+                        butter += 20;
+                        SetText();
+                    }
+                    else if (interactedObject.tag == "Bake")
+                    {
+                        Debug.Log("You bake the cookies!");
+                        
+                    }
+                    else
+                    {
+                        Debug.Log("No object!");
+                    }
+                }
 
-                }
-                else if (canBake == true && interactedObject.tag == "Flour")
-                {
-                    Debug.Log("You added Flour!");
-                }
-                else if (canBake == true && interactedObject.tag == "Sugar")
-                {
-                    Debug.Log("You added Sugar!");
-                }
-                else if (canBake == true && interactedObject.tag == "Butter")
-                {
-                    Debug.Log("You added Butter!");
-                }
-                else if (canBake == true && interactedObject.tag == "Leavener")
-                {
-                    Debug.Log("You added leavening agent!");
-                }
-                else
-                {
-                    Debug.Log("No object!");
-                }
             }
+        }
+    }
+
+    void SetText()
+    {
+        //countText.text = "Coins: " + count.ToString();
+        amountTextEggs.text = eggs.ToString() + "%";
+        amountTextFlour.text = flour.ToString() + "%";
+        amountTextSugar.text = sugar.ToString() + "%";
+        amountTextButter.text = butter.ToString() + "%";
+    }
+
+    void BakeCookies()
+    {
+        canBake = false;
+
+        if(eggs <= 40)
+        {
+
+        }
+        else if(eggs == 60)
+        {
+
         }
     }
 }

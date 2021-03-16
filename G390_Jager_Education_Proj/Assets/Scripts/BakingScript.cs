@@ -19,6 +19,7 @@ public class BakingScript : MonoBehaviour
     public TextMeshPro amountTextFlour;
     public TextMeshPro amountTextSugar;
     public TextMeshPro amountTextButter;
+    public TextMeshProUGUI resultText;
 
     // Start is called before the first frame update
     void Start()
@@ -73,7 +74,7 @@ public class BakingScript : MonoBehaviour
                     else if (interactedObject.tag == "Bake")
                     {
                         Debug.Log("You bake the cookies!");
-                        
+                        BakeCookies();
                     }
                     else
                     {
@@ -103,25 +104,92 @@ public class BakingScript : MonoBehaviour
     {
         canBake = false;
 
-        if(eggs <= 60)
+        //check egga mount
+        if(eggs <= 40)
         {
-
+            resultText.text = resultText.text + " You didn't add enough egg...your cookie tastes too sweet, no caramelization, dry on the outside and doughy on the inside.";
         }
-        else if (eggs == 80)
+        else if (eggs == 80 || eggs == 60)
         {
-
+            resultText.text = resultText.text + " You added less egg than the full amount, so your cookie tastes extra sweet and maintained a thick profile. A little dry on the outside, but it's extra soft on the inside!";
         }
         else if (eggs == 100)
         {
-
+            resultText.text = resultText.text + " You added the full amount of egg. Your cookie browns evenly, spreads a fair amount, but is still solid in the middle and isn't too sweet.";
         }
-        else if (eggs == 120)
+        else if (eggs == 120 || eggs == 140)
         {
-
+            resultText.text = resultText.text + " You added extra egg. Your cookie spreads out a little much, making it a bit thinner and crispier. It's extra caramaelized on the outside and less sweet than your average cookie.";
         }
-        else if (eggs >= 140)
+        else if (eggs >= 160)
         {
+            resultText.text = resultText.text + " You added too much egg! Your cookie spreads very thin, isn't sweet, and browned to a crisp.";
+        }
 
+        //check flour amount
+        if (flour <= 40)
+        {
+            resultText.text = resultText.text + " You didn't add enough flour...congrats you made cookie soup.";
+        }
+        else if (flour == 80 || flour == 60)
+        {
+            resultText.text = resultText.text + " You added less flour. Your cookie spreads out more for a thin and crispier profile, but the chocolate, sugar, and other flavors stand out boldly!";
+        }
+        else if (flour == 100)
+        {
+            resultText.text = resultText.text + " You added the full amount of flour. Your cookie gently thins while baking to a moderate circular thickness.";
+        }
+        else if (flour == 120 || flour == 140)
+        {
+            resultText.text = resultText.text + " You added extra flour. Your cookie holds its original shape and thickness without browning as much, but the main ingredient flavors are a bit muted.";
+        }
+        else if (flour >= 160)
+        {
+            resultText.text = resultText.text + " You added too much flour! Your cookie doesn't spread at all, and you taste the grains of wheat.";
+        }
+
+        //check sugar amount
+        if (sugar <= 40)
+        {
+            resultText.text = resultText.text + " You didn't add enough sugar. Your cookie is completely dry and tastes mucky.";
+        }
+        else if (sugar == 80 || sugar == 60)
+        {
+            resultText.text = resultText.text + " You added less sugar. Your cookie doesn't spread as much and is less sweet, with the chocolate standing out more.";
+        }
+        else if (sugar == 100)
+        {
+            resultText.text = resultText.text + " You added the full amount of sugar. Your cookie spreads a moderate amount and is pleasantly sweet.";
+        }
+        else if (sugar == 120 || sugar == 140)
+        {
+            resultText.text = resultText.text + " You added extra sugar. Your cookie spreads more than usual and is very sweet, overpowering some of the other flavors.";
+        }
+        else if (sugar >= 160)
+        {
+            resultText.text = resultText.text + " You added too much sugar! Your cookie spread super flat and is basically a messed up caramel.";
+        }
+
+        //check butter amount
+        if (butter <= 40)
+        {
+            resultText.text = resultText.text + " You didn't add enough butter. Your cookie doesn't brown and is dry and crackly.";
+        }
+        else if (butter == 80 || butter == 60)
+        {
+            resultText.text = resultText.text + " You added less butter. Your cookie firm and a lacking savory flavor.";
+        }
+        else if (butter == 100)
+        {
+            resultText.text = resultText.text + " You added the full amount of butter. Your cookie browns evenly, is soft but firm, and has a nice layer of savoriness.";
+        }
+        else if (butter == 120 || butter == 140)
+        {
+            resultText.text = resultText.text + " You added extra butter. Your cookie is extra gooey and savory.";
+        }
+        else if (butter >= 160)
+        {
+            resultText.text = resultText.text + " You added too much butter! Your cookie is so gooey it falls apart as soon as you pick it up, and is quite greasy.";
         }
     }
 }
